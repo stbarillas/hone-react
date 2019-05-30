@@ -1,0 +1,10 @@
+.navbar {
+    height: 85px;
+    position: relative;
+    background: #FF5C39;
+    color: white;
+}
+
+.has-depth {
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+}
