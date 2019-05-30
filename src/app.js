@@ -2,6 +2,7 @@ import React from 'react';
 import {Layout, Header, Navigation, Grid, Cell} from 'react-mdl'
 import './app.css'
 import RadioButtons from './components/radioButtons.js'
+import Table from './components/table.js'
 
 class App extends React.Component {
     render() {
@@ -25,7 +26,9 @@ class App extends React.Component {
                 {/*Columns*/}
                 <div>
                     <Grid className="columns">
-                        <Cell col={4}>4</Cell>
+                        <Cell col={4}>
+                            <Table/>
+                        </Cell>
                         <Cell col={8}>8</Cell>
                     </Grid>
                 </div>
