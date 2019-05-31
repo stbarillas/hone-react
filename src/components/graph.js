@@ -1,18 +1,19 @@
 import React from "react";
-
+import Chart from 'chart.js';
 
 class Graph extends React.Component {
 
     render() {
         return (
-            <div>Hello Test</div>
+            <div>
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
         );
     }
 }
 
 function renderChart(data, days) {
     var ctx = document.getElementById('dataChart');
-    var Chart = require('chart.js');
     var dataChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -59,3 +60,4 @@ function renderChart(data, days) {
     });
 }
 
+export default (Graph);
