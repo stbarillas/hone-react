@@ -1,6 +1,8 @@
 import React from 'react';
 import {Layout, Header, Navigation, Grid, Cell, Radio, RadioGroup, DataTable, TableHeader,} from 'react-mdl'
 import './app.css'
+import {Line} from 'react-chartjs-2'
+
 
 class App extends React.Component {
     constructor(props){
@@ -36,7 +38,7 @@ class App extends React.Component {
 
     renderTable(data, days) {
         let list = [],
-            dates = Object.keys(data);
+            dates = Object.keys(data).reverse();
         for (let i = 1; i <= days; i++) {
             let outputDict = {},
                 date = dates[i],
@@ -51,6 +53,59 @@ class App extends React.Component {
                 <TableHeader numeric name="price" tooltip="Price per unit">Price</TableHeader>
             </DataTable>
         )
+    }
+
+    renderChart(data, days) {
+        let chartData = {
+            // Slice start calculated dynamically with days parameter
+            labels: Object.keys(data).slice(31 - days, 31),
+                datasets: [{
+                label: '',
+                data: Object.values(data).slice(31 - days, 31),
+                backgroundColor: [
+                    "rgb(59, 136, 252, .2)",
+                ],
+                borderColor: [
+                    "rgba(0, 0, 0, 0.3)",
+                ],
+                borderWidth: 3,
+                lineTension: .1,
+                pointBackgroundColor: "rgb(59, 136, 252)"
+            }]
+        }
+        let chartOptions = {
+            title: {
+                display: true,
+                    text: "Historical BTC Graph",
+                    fontSize: 20,
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Price (USD)",
+                    },
+                    ticks: {
+                        beginAtZero: false
+                    }
+                }],
+                    xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Date",
+                    }
+                }]
+            }
+        };
+
+        return (
+            <Line
+                data={chartData}
+                // width={100}
+                // height={50}
+                options={chartOptions}
+            />
+        );
     }
 
     render() {
@@ -83,7 +138,7 @@ class App extends React.Component {
                             {this.renderTable(this.state.data, this.state.days)}
                         </Cell>
                         <Cell col={8}>
-
+                            {this.renderChart(this.state.data, this.state.days)}
                         </Cell>
                     </Grid>
                 </div>
@@ -91,9 +146,6 @@ class App extends React.Component {
         );
     }
 }
-
-
-
 
 
 export default(App);
