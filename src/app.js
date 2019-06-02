@@ -1,19 +1,38 @@
 import React from 'react';
-import {Layout, Header, Navigation, Grid, Cell, Radio, RadioGroup} from 'react-mdl'
+import {Layout, Header, Navigation, Grid, Cell, Radio, RadioGroup,} from 'react-mdl'
 import './app.css'
-import RadioButtons from './components/radioButtons.js'
-import Table from './components/table.js'
-import Graph from './components/graph.js'
 
 class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             days: 30,
+            data: {},
         }
+
     }
     setDays(newVal) {
-        this.setState({days: newVal,})
+        this.setState({days: newVal})
+    }
+
+    componentDidMount() {
+        // API call function
+        fetch('https://api.coindesk.com/v1/bpi/historical/close.json')
+        // Converts API response to json
+            .then( (response) => {
+                return response.json();
+            })
+            // Calls render functions with bci object and days as parameters.
+            .then((data) => {
+                let priceDict = data["bpi"];
+                console.log(priceDict);
+                this.setState({data: priceDict});
+            })
+            // Displays error if API call is unsuccessful
+            .catch((err) => {
+                console.log("API fetch was unsuccessful");
+                console.log(err);
+            })
     }
 
     render() {
@@ -39,21 +58,24 @@ class App extends React.Component {
                         <Radio value="3" onClick={() => this.setDays(3)}>3 Days</Radio>
                     </RadioGroup>
                 </div>
-                {/*/!*Columns*!/*/}
-                {/*<div>*/}
-                {/*    <Grid className="columns">*/}
-                {/*        <Cell col={4}>*/}
-                {/*            <Table/>*/}
-                {/*        </Cell>*/}
-                {/*        <Cell col={8}>*/}
-                {/*            <Graph/>*/}
-                {/*        </Cell>*/}
-                {/*    </Grid>*/}
-                {/*</div>*/}
+                {/*Columns*/}
+                <div>
+                    <Grid className="columns">
+                        <Cell col={4}>
+                            {/*<RenderedTable/>*/}
+                        </Cell>
+                        <Cell col={8}>
+
+                        </Cell>
+                    </Grid>
+                </div>
             </div>
         );
     }
 }
+
+
+
 
 
 export default(App);
