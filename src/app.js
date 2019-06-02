@@ -1,5 +1,5 @@
 import React from 'react';
-import {Layout, Header, Navigation, Grid, Cell, Radio, RadioGroup,} from 'react-mdl'
+import {Layout, Header, Navigation, Grid, Cell, Radio, RadioGroup, DataTable, TableHeader,} from 'react-mdl'
 import './app.css'
 
 class App extends React.Component {
@@ -25,7 +25,6 @@ class App extends React.Component {
             // Calls render functions with bci object and days as parameters.
             .then((data) => {
                 let priceDict = data["bpi"];
-                console.log(priceDict);
                 this.setState({data: priceDict});
             })
             // Displays error if API call is unsuccessful
@@ -33,6 +32,25 @@ class App extends React.Component {
                 console.log("API fetch was unsuccessful");
                 console.log(err);
             })
+    }
+
+    renderTable(data, days) {
+        let list = [],
+            dates = Object.keys(data);
+        for (let i = 1; i <= days; i++) {
+            let outputDict = {},
+                date = dates[i],
+                price = data[date];
+            outputDict.date = date;
+            outputDict.price = price;
+            list.push(outputDict);
+        }
+        return (
+            <DataTable shadow={0} rows={list}>
+                <TableHeader name="date" tooltip="The amazing material name">Date</TableHeader>
+                <TableHeader numeric name="price" tooltip="Price per unit">Price</TableHeader>
+            </DataTable>
+        )
     }
 
     render() {
@@ -62,7 +80,7 @@ class App extends React.Component {
                 <div>
                     <Grid className="columns">
                         <Cell col={4}>
-                            {/*<RenderedTable/>*/}
+                            {this.renderTable(this.state.data, this.state.days)}
                         </Cell>
                         <Cell col={8}>
 
