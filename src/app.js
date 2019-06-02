@@ -39,7 +39,7 @@ class App extends React.Component {
     renderTable(data, days) {
         let list = [],
             dates = Object.keys(data).reverse();
-        for (let i = 1; i <= days; i++) {
+        for (let i = 0; i < days; i++) {
             let outputDict = {},
                 date = dates[i],
                 price = data[date];
