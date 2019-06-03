@@ -1,7 +1,9 @@
 import React from 'react';
-import {Layout, Header, Navigation, Grid, Cell, Radio, RadioGroup, DataTable, TableHeader,} from 'react-mdl'
+import {Layout, Header, Navigation, Grid, Cell} from 'react-mdl'
 import './app.css'
-import {Line} from 'react-chartjs-2'
+import RenderTable from "./components/table"
+import RenderChart from "./components/chart"
+import RadioButtons from "./components/radioButtons"
 
 
 class App extends React.Component {
@@ -9,9 +11,8 @@ class App extends React.Component {
         super(props);
         this.state = {
             days: 30,
-            data: {},
+            dates: {},
         }
-
     }
     setDays(newVal) {
         this.setState({days: newVal})
@@ -27,85 +28,13 @@ class App extends React.Component {
             // Calls render functions with bci object and days as parameters.
             .then((data) => {
                 let priceDict = data["bpi"];
-                this.setState({data: priceDict});
+                this.setState({dates: priceDict});
             })
             // Displays error if API call is unsuccessful
             .catch((err) => {
                 console.log("API fetch was unsuccessful");
                 console.log(err);
             })
-    }
-
-    renderTable(data, days) {
-        let list = [],
-            dates = Object.keys(data).reverse();
-        for (let i = 0; i < days; i++) {
-            let outputDict = {},
-                date = dates[i],
-                price = data[date];
-            outputDict.date = date;
-            outputDict.price = price;
-            list.push(outputDict);
-        }
-        return (
-            <DataTable shadow={0} rows={list} align={"center"}>
-                <TableHeader name="date" tooltip="The amazing material name">Date</TableHeader>
-                <TableHeader numeric name="price" tooltip="Price per unit">Price (USD)</TableHeader>
-            </DataTable>
-        )
-    }
-
-    renderChart(data, days) {
-        let chartData = {
-            // Slice start calculated dynamically with days parameter
-            labels: Object.keys(data).slice(31 - days, 31),
-                datasets: [{
-                label: '',
-                data: Object.values(data).slice(31 - days, 31),
-                backgroundColor: [
-                    "rgb(59, 136, 252, .2)",
-                ],
-                borderColor: [
-                    "rgba(0, 0, 0, 0.3)",
-                ],
-                borderWidth: 3,
-                lineTension: .1,
-                pointBackgroundColor: "rgb(59, 136, 252)"
-            }]
-        }
-        let chartOptions = {
-            title: {
-                display: true,
-                    text: "Historical BTC Data",
-                    fontSize: 20,
-            },
-            scales: {
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: "Price (USD)",
-                    },
-                    ticks: {
-                        beginAtZero: false
-                    }
-                }],
-                    xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: "Date",
-                    }
-                }]
-            }
-        };
-
-        return (
-            <Line
-                data={chartData}
-                // width={100}
-                // height={50}
-                options={chartOptions}
-            />
-        );
     }
 
     render() {
@@ -130,22 +59,17 @@ class App extends React.Component {
                     </Layout>
                 </div>
                 {/*Radio button section*/}
-                <div id={"radioContainer"}>
-                    <RadioGroup name="demo" value="30">
-                        <Radio className={"radioButtons"} value="30" onClick={() => this.setDays(30)}>30 Days</Radio>
-                        <Radio className={"radioButtons"} value="15" onClick={() => this.setDays(15)}>15 Days</Radio>
-                        <Radio className={"radioButtons"} value="7" onClick={() => this.setDays(7)}>7 Days</Radio>
-                        <Radio className={"radioButtons"} value="3" onClick={() => this.setDays(3)}>3 Days</Radio>
-                    </RadioGroup>
-                </div>
+                    {/*Assigns props.onclick to a function that takes parameter "days" from components and calls
+                     method setDays while injection "days"*/}
+                <RadioButtons onClick={(days) => this.setDays(days)}/>
                 {/*Columns*/}
                 <div>
                     <Grid className="columns">
                         <Cell col={4}>
-                            {this.renderTable(this.state.data, this.state.days)}
+                            <RenderTable dates={this.state.dates} days={this.state.days}/>
                         </Cell>
                         <Cell col={8}>
-                            {this.renderChart(this.state.data, this.state.days)}
+                            <RenderChart dates={this.state.dates} days={this.state.days}/>
                         </Cell>
                     </Grid>
                 </div>
@@ -153,6 +77,5 @@ class App extends React.Component {
         );
     }
 }
-
 
 export default(App);
