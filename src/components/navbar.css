@@ -1,0 +1,19 @@
+/*Navbar*/
+.navbar {
+    height: 85px;
+    position: relative;
+    background: #FF5C39;
+    color: white;
+}
+.navbar-item {
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-right: 20px;
+}
+.navbar-item:hover {
+    background: unset !important;
+}
+.navbar-item:hover span {
+    color: #FFFFFF !important;
+    border-bottom: 1px solid #FFFFFF;
+}

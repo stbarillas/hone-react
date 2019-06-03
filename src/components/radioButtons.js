@@ -1,5 +1,6 @@
 import React from 'react';
 import {RadioGroup, Radio} from 'react-mdl';
+import "./radioButtons.css";
 
 // Takes props.onclick and renders radio group and buttons
 // When onClick is called, passes its value to a function that injects this value to setDays method

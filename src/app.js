@@ -1,9 +1,11 @@
 import React from 'react';
-import {Layout, Header, Navigation, Grid, Cell} from 'react-mdl'
-import './app.css'
-import RenderTable from "./components/table"
-import RenderChart from "./components/chart"
-import RadioButtons from "./components/radioButtons"
+import {Layout, Header, Navigation, Grid, Cell} from 'react-mdl';
+import './app.css';
+import RenderTable from "./components/table";
+import RenderChart from "./components/chart";
+import RadioButtons from "./components/radioButtons";
+import Navbar from './components/navbar';
+
 
 
 class App extends React.Component {
@@ -41,23 +43,7 @@ class App extends React.Component {
         return (
             <div>
                 {/*Navbar section*/}
-                <div className={'navbar has-depth'}>
-                    <Layout>
-                        <Header transparent title=
-                            {<img src="http://honecap.com/wp-content/uploads/2017/03/HONE-LOGO.svg"
-                                  alt="hone cap logo" style={{width: "200px", height: "49px"}}/>}
-                        >
-                            <Navigation>
-                                <a className={"navbar-item"} href="https://github.com/stbarillas/hone-react">
-                                    <span>Source Code</span>
-                                </a>
-                                <a className={"navbar-item"} href="http://stevebarillas.com/">
-                                    <span>Portfolio</span>
-                                </a>
-                            </Navigation>
-                        </Header>
-                    </Layout>
-                </div>
+                <Navbar/>
                 {/*Radio button section*/}
                     {/*Assigns props.onclick to a function that takes parameter "days" from components and calls
                      method setDays while injection "days"*/}
