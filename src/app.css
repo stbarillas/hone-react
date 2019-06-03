@@ -1,10 +1,66 @@
+/*General styles*/
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #666666;
+}
+.is-full-height {
+    height: 100vh;
+}
+.is-full-width {
+    width: 100vw;
+}
+.is-vertically-centered {
+    position: absolute;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.is-horizontally-centered {
+    position: absolute;
+    left: 50%;
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.has-depth {
+    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+/*Navbar*/
 .navbar {
     height: 85px;
     position: relative;
     background: #FF5C39;
     color: white;
 }
+.navbar-item {
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-right: 20px;
+}
+.navbar-item:hover {
+    background: unset !important;
+}
+.navbar-item:hover span {
+    color: #FFFFFF !important;
+    border-bottom: 1px solid #FFFFFF;
+}
 
-.has-depth {
-    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+/*Radio Buttons*/
+#radioContainer{
+    text-align: center;
+    margin-top: 20px;
+}
+.radioButtons{
+    margin: 5px 10px 10px;
+}
+input {
+    margin: 0 5px 0 10px;
 }

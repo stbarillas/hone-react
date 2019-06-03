@@ -48,9 +48,9 @@ class App extends React.Component {
             list.push(outputDict);
         }
         return (
-            <DataTable shadow={0} rows={list}>
+            <DataTable shadow={0} rows={list} align={"center"}>
                 <TableHeader name="date" tooltip="The amazing material name">Date</TableHeader>
-                <TableHeader numeric name="price" tooltip="Price per unit">Price</TableHeader>
+                <TableHeader numeric name="price" tooltip="Price per unit">Price (USD)</TableHeader>
             </DataTable>
         )
     }
@@ -76,7 +76,7 @@ class App extends React.Component {
         let chartOptions = {
             title: {
                 display: true,
-                    text: "Historical BTC Graph",
+                    text: "Historical BTC Data",
                     fontSize: 20,
             },
             scales: {
@@ -114,21 +114,28 @@ class App extends React.Component {
                 {/*Navbar section*/}
                 <div className={'navbar has-depth'}>
                     <Layout>
-                        <Header transparent title="Logo Goes Here">
+                        <Header transparent title=
+                            {<img src="http://honecap.com/wp-content/uploads/2017/03/HONE-LOGO.svg"
+                                  alt="hone cap logo" style={{width: "200px", height: "49px"}}/>}
+                        >
                             <Navigation>
-                                <a href="/">Link</a>
-                                <a href="/">Link</a>
+                                <a className={"navbar-item"} href="https://github.com/stbarillas/hone-react">
+                                    <span>Source Code</span>
+                                </a>
+                                <a className={"navbar-item"} href="http://stevebarillas.com/">
+                                    <span>Portfolio</span>
+                                </a>
                             </Navigation>
                         </Header>
                     </Layout>
                 </div>
                 {/*Radio button section*/}
-                <div>
+                <div id={"radioContainer"}>
                     <RadioGroup name="demo" value="30">
-                        <Radio value="30" onClick={() => this.setDays(30)}>30 Days</Radio>
-                        <Radio value="15" onClick={() => this.setDays(15)}>15 Days</Radio>
-                        <Radio value="7" onClick={() => this.setDays(7)}>7 Days</Radio>
-                        <Radio value="3" onClick={() => this.setDays(3)}>3 Days</Radio>
+                        <Radio className={"radioButtons"} value="30" onClick={() => this.setDays(30)}>30 Days</Radio>
+                        <Radio className={"radioButtons"} value="15" onClick={() => this.setDays(15)}>15 Days</Radio>
+                        <Radio className={"radioButtons"} value="7" onClick={() => this.setDays(7)}>7 Days</Radio>
+                        <Radio className={"radioButtons"} value="3" onClick={() => this.setDays(3)}>3 Days</Radio>
                     </RadioGroup>
                 </div>
                 {/*Columns*/}
