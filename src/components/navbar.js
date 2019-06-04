@@ -6,7 +6,7 @@ function Navbar() {
     return (
         <div className={'navbar has-depth'}>
             <Layout>
-                <Header transparent title=
+                <Header className={"is-vertically-centered"} transparent title=
                     {<img src="http://honecap.com/wp-content/uploads/2017/03/HONE-LOGO.svg"
                           alt="hone cap logo" style={{width: "200px", height: "49px"}}/>}
                 >

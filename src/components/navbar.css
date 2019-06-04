@@ -1,14 +1,22 @@
 /*Navbar*/
+.is-vertically-centered {
+    position: absolute;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
 .navbar {
     height: 85px;
     position: relative;
-    background: #FF5C39;
+    background: #1A75FF;
     color: white;
 }
 .navbar-item {
     color: #FFFFFF;
     font-weight: bold;
-    margin-right: 20px;
+    font-size: 20px;
+    margin-right: 0px;
 }
 .navbar-item:hover {
     background: unset !important;

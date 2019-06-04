@@ -1,5 +1,5 @@
 import React from 'react';
-import {Layout, Header, Navigation, Grid, Cell} from 'react-mdl';
+import {Grid, Cell} from 'react-mdl';
 import './app.css';
 import RenderTable from "./components/table";
 import RenderChart from "./components/chart";

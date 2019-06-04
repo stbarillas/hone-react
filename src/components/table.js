@@ -1,5 +1,6 @@
 import React from "react";
 import {DataTable, TableHeader} from "react-mdl";
+import "./table.css"
 
 // Takes dates and days as properties to render dynamic table with correct number of rows
 function RenderTable(props) {
@@ -18,10 +19,14 @@ function RenderTable(props) {
         outputlist.push(outputDict);
     }
     return(
-        <DataTable shadow={0} rows={outputlist} align={"center"}>
-            <TableHeader name="date" tooltip="The amazing material name">Date</TableHeader>
-            <TableHeader numeric name="price" tooltip="Price per unit">Price (USD)</TableHeader>
-        </DataTable>
+        <div>
+            <h1 id={"tableTitle"}>Price Table</h1>
+            <DataTable shadow={0} rows={outputlist} align={"center"}>
+                <TableHeader name="date" tooltip="The amazing material name">Date</TableHeader>
+                <TableHeader numeric name="price" tooltip="Price per unit">Price (USD)</TableHeader>
+            </DataTable>
+        </div>
+
     )
 }
 

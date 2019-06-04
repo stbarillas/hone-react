@@ -25,6 +25,8 @@ function RenderChart(props) {
             display: true,
             text: "Historical BTC Data",
             fontSize: 20,
+            fontFamily:"Roboto",
+            fontWeight:"bold"
         },
         scales: {
             yAxes: [{
