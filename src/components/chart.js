@@ -51,11 +51,11 @@ function RenderChart(props) {
 
     return (
         <div>
-            <RadioButtons onClick={(days)=>props.onClick(days)}/>
             <Line
                 data={chartData}
                 options={chartOptions}
             />
+            <RadioButtons onClick={(days)=>props.onClick(days)}/>
         </div>
     );
 }

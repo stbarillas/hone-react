@@ -3,10 +3,10 @@
     text-align: center;
     margin-top: 20px;
 }
-#radioTitle{
-    text-align: center;
-    margin: unset;
-}
+/*#radioTitle{*/
+/*    text-align: center;*/
+/*    margin: unset;*/
+/*}*/
 .radioButtons{
     margin: 0px 10px 10px;
 }

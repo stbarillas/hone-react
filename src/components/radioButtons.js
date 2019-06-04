@@ -7,7 +7,7 @@ import "./radioButtons.css";
 function RadioButtons(props){
      return (
             <div id={"radioContainer"}>
-                <h1 id={"radioTitle"}>Day Filter</h1>
+                {/*<h1 id={"radioTitle"}>Day Filter</h1>*/}
                 <RadioGroup name="demo" value="30">
                     <Radio className={"radioButtons"} value="3" onClick={() => props.onClick(3)}>3 Days</Radio>
                     <Radio className={"radioButtons"} value="7" onClick={() => props.onClick(7)}>7 Days</Radio>
