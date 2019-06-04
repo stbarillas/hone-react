@@ -48,10 +48,12 @@ class App extends React.Component {
                     <Grid className="columns">
                         {/*Table column*/}
                         <Cell col={4}>
+                            {/*Pass dates and days to table component*/}
                             <RenderTable dates={this.state.dates} days={this.state.days}/>
                         </Cell>
                         {/*Graph column*/}
                         <Cell col={8}>
+                            {/*Pass dates and days to chart component*/}
                             <RenderChart dates={this.state.dates} days={this.state.days}
                              onClick={(days) => this.setDays(days)}
                             />
