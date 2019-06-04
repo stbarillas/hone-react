@@ -3,7 +3,6 @@ import {Grid, Cell} from 'react-mdl';
 import './app.css';
 import RenderTable from "./components/table";
 import RenderChart from "./components/chart";
-import RadioButtons from "./components/radioButtons";
 import Navbar from './components/navbar';
 
 
@@ -44,18 +43,18 @@ class App extends React.Component {
             <div>
                 {/*Navbar section*/}
                 <Navbar/>
-                {/*Radio button section*/}
-                    {/*Assigns props.onclick to a function that takes parameter "days" from components and calls
-                     method setDays while injection "days"*/}
-                <RadioButtons onClick={(days) => this.setDays(days)}/>
-                {/*Columns*/}
+                {/*Columns section*/}
                 <div>
                     <Grid className="columns">
+                        {/*Table column*/}
                         <Cell col={4}>
                             <RenderTable dates={this.state.dates} days={this.state.days}/>
                         </Cell>
+                        {/*Graph column*/}
                         <Cell col={8}>
-                            <RenderChart dates={this.state.dates} days={this.state.days}/>
+                            <RenderChart dates={this.state.dates} days={this.state.days}
+                             onClick={(days) => this.setDays(days)}
+                            />
                         </Cell>
                     </Grid>
                 </div>

@@ -1,5 +1,7 @@
 import {Line} from "react-chartjs-2";
 import React from "react";
+import RadioButtons from "./radioButtons"
+
 
 // Takes Dates and days to create dynamic chart with correct number of data points
 function RenderChart(props) {
@@ -48,10 +50,13 @@ function RenderChart(props) {
     };
 
     return (
-        <Line
-            data={chartData}
-            options={chartOptions}
-        />
+        <div>
+            <RadioButtons onClick={(days)=>props.onClick(days)}/>
+            <Line
+                data={chartData}
+                options={chartOptions}
+            />
+        </div>
     );
 }
 
