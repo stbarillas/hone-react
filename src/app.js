@@ -11,7 +11,7 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            days: 30,
+            days: 1095,
             dates: {},
         }
     }
@@ -21,7 +21,7 @@ class App extends React.Component {
 
     componentDidMount() {
         // API call function
-        fetch('https://api.coindesk.com/v1/bpi/historical/close.json')
+        fetch('https://api.coindesk.com/v1/bpi/historical/close.json?start=2016-09-01&end=2019-06-11')
         // Converts API response to json
             .then( (response) => {
                 return response.json();

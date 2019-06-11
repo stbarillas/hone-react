@@ -39,3 +39,22 @@
 //         console.log("API fetch was unsuccessful");
 //         console.log(err);
 //     })
+function test() {
+    fetch('https://api.coindesk.com/v1/bpi/historical/close.json?start=2013-09-01&end=2015-09-01')
+    // Converts API response to json
+        .then((response) => {
+            return response.json();
+        })
+        // Calls render functions with bci object and days as parameters.
+        .then((data) => {
+            let priceDict = data["bpi"];
+            console.log(priceDict)
+        })
+        // Displays error if API call is unsuccessful
+        .catch((err) => {
+            console.log("API fetch was unsuccessful");
+            console.log(err);
+        })
+}
+
+test();

@@ -7,12 +7,13 @@ import "./radioButtons.css";
 function RadioButtons(props){
      return (
             <div id={"radioContainer"}>
-                {/*<h1 id={"radioTitle"}>Day Filter</h1>*/}
-                <RadioGroup name="demo" value="30">
-                    <Radio className={"radioButtons"} value="3" onClick={() => props.onClick(3)}>3 Days</Radio>
-                    <Radio className={"radioButtons"} value="7" onClick={() => props.onClick(7)}>7 Days</Radio>
-                    <Radio className={"radioButtons"} value="15" onClick={() => props.onClick(15)}>15 Days</Radio>
-                    <Radio className={"radioButtons"} value="30" onClick={() => props.onClick(30)}>30 Days</Radio>
+                <RadioGroup name="demo" value="1095">
+                    <Radio className={"radioButtons"} value="30" onClick={() => props.onClick(30)}>1 Month</Radio>
+                    <Radio className={"radioButtons"} value="91" onClick={() => props.onClick(91)}>3 Months</Radio>
+                    <Radio className={"radioButtons"} value="182" onClick={() => props.onClick(182)}>6 Months</Radio>
+                    <Radio className={"radioButtons"} value="365" onClick={() => props.onClick(365)}>1 Year</Radio>
+                    <Radio className={"radioButtons"} value="730" onClick={() => props.onClick(730)}>2 Years</Radio>
+                    <Radio className={"radioButtons"} value="1095" onClick={() => props.onClick(1095)}>3 Years</Radio>
                 </RadioGroup>
             </div>
         );
