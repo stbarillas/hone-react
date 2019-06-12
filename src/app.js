@@ -12,8 +12,9 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            days: 365,
+            days: 1095,
             dates: {},
+            maxDays: 1095,
         }
     }
     setDays(newVal) {
@@ -60,7 +61,7 @@ class App extends React.Component {
                         <Cell col={8}>
                             {/*Pass dates and days to chart component*/}
                             <RenderChart dates={this.state.dates} days={this.state.days}
-                             onClick={(days) => this.setDays(days)}
+                             onClick={(days) => this.setDays(days)} maxDays={this.state.maxDays}
                             />
                         </Cell>
                     </Grid>

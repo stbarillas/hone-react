@@ -7,10 +7,10 @@ import RadioButtons from "./radioButtons"
 function RenderChart(props) {
     let chartData = {
         // Slice dates using number of days
-        labels: Object.keys(props.dates).slice(31 - props.days, 31),
+        labels: Object.keys(props.dates).slice(props.maxDays - props.days, props.maxDays),
         datasets: [{
             label: '',
-            data: Object.values(props.dates).slice(31 - props.days, 31),
+            data: Object.values(props.dates).slice(props.maxDays - props.days, props.maxDays),
             backgroundColor: [
                 "rgb(59, 136, 252, .2)",
             ],
