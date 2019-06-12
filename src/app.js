@@ -7,7 +7,6 @@ import Navbar from './components/navbar';
 import {currentDate, previousDate} from './tasks/dateFormat'
 
 
-
 class App extends React.Component {
     constructor(props){
         super(props);
@@ -26,24 +25,33 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        this.apiCall()
+    }
+
+    apiCall(){
         const dateEnd = currentDate();
-        const dateStart = previousDate(this.state.days);
+        const dateStart = previousDate(this.state.maxDays);
         // API call function
-        fetch('https://api.coindesk.com/v1/bpi/historical/close.json?currency=USD&start='+dateStart+'&end='+dateEnd)
+        fetch('https://api.coindesk.com/v1/bpi/historical/close.json' +
+            '?currency='+ this.state.currency + '&start='+dateStart+'&end='+dateEnd)
         // Converts API response to json
             .then( (response) => {
                 return response.json();
             })
             // Calls render functions with bci object and days as parameters.
             .then((data) => {
-                let priceDict = data["bpi"];
-                this.setState({dates: priceDict});
+                let datePriceObject = data["bpi"];
+                this.setState({dates: datePriceObject});
             })
             // Displays error if API call is unsuccessful
             .catch((err) => {
                 console.log("API fetch was unsuccessful");
                 console.log(err);
             })
+    }
+    updateData(currency){
+        this.setCurrency(currency);
+        this.apiCall();
     }
 
     render() {
@@ -58,7 +66,7 @@ class App extends React.Component {
                         <Cell col={4}>
                             {/*Pass dates and days to table component*/}
                             <RenderTable dates={this.state.dates} days={this.state.days}
-                                         onClick={(currency) => this.setCurrency(currency)}
+                                         onClick={(currency) => this.updateData(currency)}
                             />
                         </Cell>
                         {/*Graph column*/}
