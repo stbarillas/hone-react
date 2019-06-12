@@ -1,6 +1,7 @@
 import React from "react";
 import {DataTable, TableHeader} from "react-mdl";
 import "./table.css"
+import {TableRadioButtons} from './radioButtons'
 
 // Takes dates and days as properties to render dynamic table with correct number of rows
 function RenderTable(props) {
@@ -23,7 +24,9 @@ function RenderTable(props) {
             <h1 id={"tableTitle"}>Price Table</h1>
             <DataTable shadow={0} rows={outputlist} align={"center"}>
                 <TableHeader name="date" tooltip="The amazing material name">Date</TableHeader>
-                <TableHeader numeric name="price" tooltip="Price per unit">Price (USD)</TableHeader>
+                <TableHeader numeric name="price" tooltip="Price per unit">
+                    <TableRadioButtons onClick={(currency)=>props.onClick(currency)}/>
+                </TableHeader>
             </DataTable>
         </div>
 
