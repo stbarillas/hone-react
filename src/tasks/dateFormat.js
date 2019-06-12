@@ -1,4 +1,3 @@
-import RenderTable from "../components/table";
 
 function millisecondCalc(days){
     const milliseconds = days * 24 * 60 * 60 * 1000;

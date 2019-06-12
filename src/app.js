@@ -21,12 +21,12 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        const test = currentDate();
-        const test2 = previousDate(this.state.days);
-        console.log(test);
-        console.log(test2);
+        const dateEnd = currentDate();
+        const dateStart = previousDate(this.state.days);
+        // console.log(test);
+        // console.log(test2);
         // API call function
-        fetch('https://api.coindesk.com/v1/bpi/historical/close.json?start=2016-09-01&end=2019-06-11')
+        fetch('https://api.coindesk.com/v1/bpi/historical/close.json?start='+dateStart+'&end='+dateEnd)
         // Converts API response to json
             .then( (response) => {
                 return response.json();
