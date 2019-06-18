@@ -6,7 +6,8 @@ import {TableRadioButtons} from './radioButtons'
 // Takes dates and days as properties to render dynamic table with correct number of rows
 function RenderTable(props) {
     // Reverses dates in order to display most recent date at the top of the table
-    let dates = Object.keys(props.dates).reverse(),
+    let formatData = props.dates['0'],
+        dates = Object.keys(formatData).reverse(),
         // Creates empty output list that will get populated below
         outputlist = [];
     // Iterate through dates, creating an object each time that is pushed to outputList

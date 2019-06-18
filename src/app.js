@@ -52,7 +52,7 @@ class App extends React.Component {
     }
     updateData(currency){
         this.setCurrency(currency);
-        this.apiCall();
+        // this.apiCall();
     }
 
     render() {
@@ -68,9 +68,9 @@ class App extends React.Component {
                             {/*Table column*/}
                             <Cell col={4}>
                                 {/*Pass dates and days to table component*/}
-                                {/*<RenderTable dates={this.state.dates} days={this.state.days}*/}
-                                {/*             onClick={(currency) => this.updateData(currency)}*/}
-                                {/*/>*/}
+                                <RenderTable dates={this.state.dates} days={this.state.days}
+                                             onClick={(currency) => this.updateData(currency)}
+                                />
                             </Cell>
                             {/*Graph column*/}
                             <Cell col={8}>
