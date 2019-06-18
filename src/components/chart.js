@@ -5,7 +5,8 @@ import {GraphRadioButtons} from "./radioButtons"
 
 // Takes Dates and days to create dynamic chart with correct number of data points
 function RenderChart(props) {
-    let dates = props.dates['0'];
+    let currency = props.currency,
+        dates = props.dates[props.currencyIndex[currency]];
     let chartData = {
         // Slice dates using number of days
         labels: Object.keys(dates).slice(props.maxDays - props.days, props.maxDays),

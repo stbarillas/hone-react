@@ -15,7 +15,7 @@ class App extends React.Component {
             dates: [],
             maxDays: 1095,
             currency: 'USD',
-            currencyIndex: {'USD':0, 'EUR':1}
+            currencyIndex: {'USD':0, 'EUR':1, 'GBP': 2}
         }
     }
     setDays(newVal) {
@@ -32,7 +32,7 @@ class App extends React.Component {
     apiCall(){
         const dateEnd = currentDate(),
             dateStart = previousDate(this.state.maxDays),
-            currencies = ['USD', "EUR"];
+            currencies = ["USD", "EUR", "GBP"];
         // API call function
         for (let x in currencies) {
             fetch('https://api.coindesk.com/v1/bpi/historical/close.json' +
@@ -74,6 +74,7 @@ class App extends React.Component {
                             <Cell col={4}>
                                 {/*Pass dates and days to table component*/}
                                 <RenderTable dates={this.state.dates} days={this.state.days}
+                                             currency={this.state.currency} currencyIndex={this.state.currencyIndex}
                                              onClick={(currency) => this.updateData(currency)}
                                 />
                             </Cell>
@@ -81,6 +82,7 @@ class App extends React.Component {
                             <Cell col={8}>
                                 {/*Pass dates and days to chart component*/}
                                 <RenderChart dates={this.state.dates} days={this.state.days}
+                                             currency={this.state.currency} currencyIndex={this.state.currencyIndex}
                                              onClick={(days) => this.setDays(days)} maxDays={this.state.maxDays}
                                 />
                             </Cell>
