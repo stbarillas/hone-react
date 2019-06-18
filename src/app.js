@@ -15,6 +15,7 @@ class App extends React.Component {
             dates: [],
             maxDays: 1095,
             currency: 'USD',
+            currencyIndex: {'USD':0, 'EUR':1}
         }
     }
     setDays(newVal) {
@@ -29,27 +30,31 @@ class App extends React.Component {
     }
 
     apiCall(){
-        const dateEnd = currentDate();
-        const dateStart = previousDate(this.state.maxDays);
+        const dateEnd = currentDate(),
+            dateStart = previousDate(this.state.maxDays),
+            currencies = ['USD', "EUR"];
         // API call function
-        fetch('https://api.coindesk.com/v1/bpi/historical/close.json' +
-            '?currency='+ this.state.currency + '&start='+dateStart+'&end='+dateEnd)
-        // Converts API response to json
-            .then( (response) => {
-                return response.json();
-            })
-            // Calls render functions with bci object and days as parameters.
-            .then((data) => {
-                let stateCopy = this.state.dates;
-                stateCopy.push(data['bpi']);
-                this.setState({dates: stateCopy});
-            })
-            // Displays error if API call is unsuccessful
-            .catch((err) => {
-                console.log("API fetch was unsuccessful");
-                console.log(err);
-            })
+        for (let x in currencies) {
+            fetch('https://api.coindesk.com/v1/bpi/historical/close.json' +
+                '?currency='+ currencies[x] + '&start='+dateStart+'&end='+dateEnd)
+            // Converts API response to json
+                .then( (response) => {
+                    return response.json();
+                })
+                // Calls render functions with bci object and days as parameters.
+                .then((data) => {
+                    let stateCopy = this.state.dates;
+                    stateCopy.push(data['bpi']);
+                    this.setState({dates: stateCopy});
+                })
+                // Displays error if API call is unsuccessful
+                .catch((err) => {
+                    console.log("API fetch was unsuccessful");
+                    console.log(err);
+                })
+        }
     }
+
     updateData(currency){
         this.setCurrency(currency);
         // this.apiCall();
