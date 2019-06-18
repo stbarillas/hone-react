@@ -64,14 +64,14 @@ class App extends React.Component {
 
         if (this.state.dates.length){
             return (
-                <div>
+                <div id={"appBody"}>
                     {/*Navbar section*/}
                     <Navbar/>
                     {/*Columns section*/}
                     <div>
                         <Grid className="columns">
                             {/*Table column*/}
-                            <Cell col={4}>
+                            <Cell col={4} className={'column'}>
                                 {/*Pass dates and days to table component*/}
                                 <RenderTable dates={this.state.dates} days={this.state.days}
                                              currency={this.state.currency} currencyIndex={this.state.currencyIndex}

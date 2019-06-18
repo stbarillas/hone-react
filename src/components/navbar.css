@@ -7,7 +7,7 @@
     transform: translateY(-50%);
 }
 .navbar {
-    height: 85px;
+    height: 10vh;
     position: relative;
     background: #1A75FF;
     color: white;
