@@ -12,7 +12,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             days: 1095,
-            dates: {},
+            dates: [],
             maxDays: 1095,
             currency: 'USD',
         }
@@ -40,8 +40,9 @@ class App extends React.Component {
             })
             // Calls render functions with bci object and days as parameters.
             .then((data) => {
-                let datePriceObject = data["bpi"];
-                this.setState({dates: datePriceObject});
+                let stateCopy = this.state.dates;
+                stateCopy.push(data['bpi']);
+                this.setState({dates: stateCopy});
             })
             // Displays error if API call is unsuccessful
             .catch((err) => {
@@ -55,31 +56,37 @@ class App extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                {/*Navbar section*/}
-                <Navbar/>
-                {/*Columns section*/}
+
+        if (this.state.dates.length){
+            return (
                 <div>
-                    <Grid className="columns">
-                        {/*Table column*/}
-                        <Cell col={4}>
-                            {/*Pass dates and days to table component*/}
-                            <RenderTable dates={this.state.dates} days={this.state.days}
-                                         onClick={(currency) => this.updateData(currency)}
-                            />
-                        </Cell>
-                        {/*Graph column*/}
-                        <Cell col={8}>
-                            {/*Pass dates and days to chart component*/}
-                            <RenderChart dates={this.state.dates} days={this.state.days}
-                             onClick={(days) => this.setDays(days)} maxDays={this.state.maxDays}
-                            />
-                        </Cell>
-                    </Grid>
+                    {/*Navbar section*/}
+                    <Navbar/>
+                    {/*Columns section*/}
+                    <div>
+                        <Grid className="columns">
+                            {/*Table column*/}
+                            <Cell col={4}>
+                                {/*Pass dates and days to table component*/}
+                                {/*<RenderTable dates={this.state.dates} days={this.state.days}*/}
+                                {/*             onClick={(currency) => this.updateData(currency)}*/}
+                                {/*/>*/}
+                            </Cell>
+                            {/*Graph column*/}
+                            <Cell col={8}>
+                                {/*Pass dates and days to chart component*/}
+                                <RenderChart dates={this.state.dates} days={this.state.days}
+                                             onClick={(days) => this.setDays(days)} maxDays={this.state.maxDays}
+                                />
+                            </Cell>
+                        </Grid>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
+        else{
+            return <div></div>
+        }
     }
 }
 
